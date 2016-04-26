@@ -1,0 +1,17 @@
+{
+   xml_leak
+   Memcheck:Leak
+   ...
+   fun:xmlNewTextReaderFilename
+   ...
+   fun:main
+}
+{
+   xml_cond_1
+   Memcheck:Cond
+   fun:malloc_consolidate
+   ...
+   fun:xmlSchemaParse
+   ...
+   fun:main
+}

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+/usr/bin/make $* 2>&1 | sed \
+    -e 's/^.* warning:.*/\x1b[38;5;220m&\x1b[0m/i' \
+    -e 's/^Warning: .*/\x1b[38;5;220m&\x1b[0m/i' \
+    -e 's/^.* error:.*/\x1b[38;5;88m&\x1b[0m/i' \
+    -e 's/^Error: .*/\x1b[38;5;88m&\x1b[0m/i' \
+    -e 's/^make.* Error .*/\x1b[38;5;88m&\x1b[0m/i' \
+    -e 's/^.*In function.*/\x1b[38;5;208m&\x1b[0m/i' \
+    -e 's/^.*In file included.*/\x1b[38;5;208m&\x1b[0m/i' \
+    -e 's/^gcc .*/\x1b[38;5;47m&\x1b[0m/i' \
+    -e 's/^cc .*/\x1b[38;5;47m&\x1b[0m/i' \
+    -e 's/^gfortran .*/\x1b[38;5;47m&\x1b[0m/i' \
+    -e 's/^ar .*/\x1b[38;5;47m&\x1b[0m/i' \
+    -e 's/^a - .*/\x1b[38;5;47m&\x1b[0m/i' \
+    -e 's/^install .*/\x1b[38;5;32m&\x1b[0m/i' \
+    -e 's/^linking .*/\x1b[38;5;32m&\x1b[0m/i' \
+    -e 's/^\[.*\%\] .*/\x1b[38;5;47m&\x1b[0m/i' \
+    -e 's/^rm .*/\x1b[38;5;47m&\x1b[0m/i' \
+    -e 's/^.*/\x1b[38;5;15m&\x1b[0m/i'

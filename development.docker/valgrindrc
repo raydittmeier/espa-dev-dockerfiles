@@ -1,0 +1,7 @@
+--memcheck:leak-check=full
+--track-origins=yes
+--show-reachable=yes
+--num-callers=12
+--gen-suppressions=all
+--log-file=/home/espa/valgrind.log
+--suppressions=/home/espa/valgrind.supp
