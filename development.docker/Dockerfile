@@ -1,4 +1,4 @@
-FROM usgs-espa/ubuntu-science
+FROM usgs.espa.ubuntu.science
 MAINTAINER USGS LSRD http://eros.usgs.gov
 
 LABEL description="This is a build containing additional software for development purposes."
