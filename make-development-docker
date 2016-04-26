@@ -1,0 +1,15 @@
+# Setup
+SOURCE=development.docker
+NAME=rdilley-development-docker
+FLAT_NAME=rdilley-development-docker-flat
+
+# Build the image
+docker build -t $NAME $SOURCE
+
+# Now Flatten the image
+#ID=$(docker run -d $NAME /bin/bash)
+#echo "ID = "$ID
+#docker export $ID | docker import - $FLAT_NAME
+
+# Remove the container we used
+#docker rm $ID
