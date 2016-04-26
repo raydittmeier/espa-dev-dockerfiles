@@ -1,7 +1,7 @@
 # Setup
 SOURCE=development.docker
-NAME=$USER-development-docker
-FLAT_NAME=$USER-development-docker-flat
+NAME=$USER.development.docker
+FLAT_NAME=$USER.development.docker.flat
 
 # Build the image
 docker build -t $NAME $SOURCE
