@@ -1,0 +1,2 @@
+alias ls='/bin/ls --color=tty'
+alias cls='clear;ls'
