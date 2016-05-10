@@ -12,7 +12,8 @@ shift # past the argument
 groupadd --gid $THE_GID $THE_USER
 useradd --system --gid $THE_GID --uid $THE_UID --shell /bin/bash --create-home $THE_USER
 
-usermod -append --groups sudo $THE_USER
+# Add sudo stuff for the user to the system
+#usermod -append --groups sudo $THE_USER
 #echo "$THE_USER ALL=(ALL) NOPASSWD: /usr/bin/chattr" >> /etc/sudoers
 echo "$THE_USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
@@ -33,14 +34,14 @@ export HOME=/home/$THE_USER
 # Don't create *.pyc files
 export PYTHONDONTWRITEBYTECODE=1
 # Activate the python virtual environment
-. /python-virtual/bin/activate
+source /python-env/bin/activate
 
 # Fixup the home directory since it was created before the user was
 cd $HOME
-cp /etc/skel/.bash_logout .
-cp /etc/skel/.bashrc .
-cp /etc/skel/.profile .
-chown $THE_UID:$THE_GID .bash_logout .bashrc .profile .valgrindrc valgrind.supp .
+chown $THE_UID:$THE_GID $HOME
+chown $THE_UID:$THE_GID .bashrc .bash-aliases .bash-prompt .bash-user
+chown $THE_UID:$THE_GID .valgrindrc valgrind.supp
+chown --recursive $THE_UID:$THE_GID $HOME/bin
 chown --recursive $THE_UID:$THE_GID /usr/local/bin
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-cloud-masking
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-land-surface-temperature
@@ -58,7 +59,7 @@ chown --recursive $THE_UID:$THE_GID /usr/local/sbin
 chown --recursive $THE_UID:$THE_GID /usr/local/schema
 chown --recursive $THE_UID:$THE_GID /usr/local/share
 chown --recursive $THE_UID:$THE_GID /usr/local/src
-chmod go=u,go-w .bash_logout .bashrc .profile
+chmod go=u,go-w .bashrc
 chmod go= .
 
 # Now execute as the user
