@@ -113,7 +113,7 @@ RUN REPO_NAME=espa-land-surface-temperature \
 # ----------------------------------------------------------------------------
 # Add an entrypoint so that we execute the specified application as the
 # specified user (THE_USER specified below)
-RUN echo "Release Candidate 1"
+RUN echo "Release Candidate 2"
 ENV THE_USER=espa \
     DEV_DATA_DIRECTORY=/home/espa/input-data
 
