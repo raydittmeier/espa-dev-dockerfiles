@@ -1,15 +1,16 @@
 # Setup
-SOURCE=development.docker
-NAME=$USER.centos.development.docker
-FLAT_NAME=$USER.centos.development.docker.flat
+tag=201605
+source=development.docker
+name=$USER.centos.development.docker
+flat_name=$USER.centos.development.docker.flat
 
 # Build the image
-docker build -t $NAME $SOURCE
+docker build -t ${name} ${source}
 
 # Now Flatten the image
 #ID=$(docker run -d $NAME /bin/bash)
 #echo "ID = "$ID
-#docker export $ID | docker import - $FLAT_NAME
+#docker export $ID | docker import - ${flat_name}
 
 # Remove the container we used
 #docker rm $ID
