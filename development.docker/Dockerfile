@@ -35,7 +35,7 @@ RUN yum install -y epel-release \
 # ----------------------------------------------------------------------------
 
 RUN REPO_NAME=espa-product-formatter \
-    && REPO_TAG=dev_v1.7.0 \
+    && REPO_TAG=dev_v1.8.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -47,7 +47,7 @@ RUN REPO_NAME=espa-product-formatter \
 
 
 RUN REPO_NAME=espa-spectral-indices \
-    && REPO_TAG=dev_may2016 \
+    && REPO_TAG=dev_v2.5.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -59,7 +59,7 @@ RUN REPO_NAME=espa-spectral-indices \
 
 
 RUN REPO_NAME=espa-cloud-masking \
-    && REPO_TAG=dev_may2016 \
+    && REPO_TAG=dev_aug2016 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -71,7 +71,7 @@ RUN REPO_NAME=espa-cloud-masking \
 
 
 RUN REPO_NAME=espa-surface-water-extent \
-    && REPO_TAG=dev_may2016 \
+    && REPO_TAG=dev_aug2016 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -83,7 +83,7 @@ RUN REPO_NAME=espa-surface-water-extent \
 
 
 RUN REPO_NAME=espa-surface-reflectance \
-    && REPO_TAG=dev_may2016 \
+    && REPO_TAG=dev_aug2016 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -95,7 +95,19 @@ RUN REPO_NAME=espa-surface-reflectance \
 
 
 RUN REPO_NAME=espa-land-surface-temperature \
-    && REPO_TAG=dev_v0.0.3 \
+    && REPO_TAG=dev_v0.1.0 \
+    && cd $SRC_DIR \
+    && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
+    && cd ${REPO_NAME} \
+    && git checkout ${REPO_TAG} \
+    && make BUILD_STATIC=yes \
+    && make install \
+    && cd $SRC_DIR \
+    && rm -rf ${REPO_NAME}
+
+
+RUN REPO_NAME=espa-elevation \
+    && REPO_TAG=dev_v1.0.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
