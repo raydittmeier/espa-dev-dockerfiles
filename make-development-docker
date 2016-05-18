@@ -1,7 +1,7 @@
 # Setup
-tag=201605
+tag=:201608
 source=development.docker
-name=$USER.centos.development.docker
+name=$USER.centos.development.docker${tag}
 flat_name=$USER.centos.development.docker.flat
 
 # Build the image
