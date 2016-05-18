@@ -1,7 +1,7 @@
 # Setup
-tag=:201608
+tag=$(git rev-parse --abbrev-ref HEAD)
 source=development.docker
-name=$USER.centos.development.docker${tag}
+name=$USER.centos.development.docker:${tag}
 flat_name=$USER.centos.development.docker.flat
 
 # Build the image
