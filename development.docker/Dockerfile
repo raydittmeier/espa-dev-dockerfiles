@@ -17,10 +17,11 @@ RUN yum install -y epel-release \
 
 # ----------------------------------------------------------------------------
 # Install newer python modules
-#RUN . /python-virtual/bin/activate \
-#    && pip install --upgrade pip \
-#    && pip install \
-#        --upgrade git+https://github.com/USGS-EROS/espa-python-library
+RUN . /python-env/bin/activate \
+    && pip install --upgrade pip \
+    && pip install --upgrade pep8 \
+    && pip install \
+        --upgrade git+https://github.com/USGS-EROS/espa-python-library@dev_201608#espa
 
 
 # ----------------------------------------------------------------------------
