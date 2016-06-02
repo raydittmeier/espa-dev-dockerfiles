@@ -42,6 +42,12 @@ chown $THE_UID:$THE_GID $HOME
 chown $THE_UID:$THE_GID .bashrc .bash-aliases .bash-prompt .bash-user
 chown $THE_UID:$THE_GID .valgrindrc valgrind.supp
 chown --recursive $THE_UID:$THE_GID $HOME/bin
+chmod go=u,go-w .bashrc
+chmod go= .
+
+# Fixup /usr/local so that the developer can update it
+##############################################################################
+# DON'T EVER DO THE FOLLOWING IN A PRODUCTION DOCKER IMAGE ONLY DEV
 chown --recursive $THE_UID:$THE_GID /usr/local/bin
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-cloud-masking
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-land-surface-temperature
@@ -59,11 +65,14 @@ chown --recursive $THE_UID:$THE_GID /usr/local/sbin
 chown --recursive $THE_UID:$THE_GID /usr/local/schema
 chown --recursive $THE_UID:$THE_GID /usr/local/share
 chown --recursive $THE_UID:$THE_GID /usr/local/src
-chmod go=u,go-w .bashrc
-chmod go= .
+# DON'T EVER DO THE ABOVE IN A PRODUCTION DOCKER IMAGE ONLY DEV
+##############################################################################
 
 # Now execute as the user
 exec gosu $THE_USER $@
-#exec gosu $THE_USER /bin/bash $@
+##############################################################################
+# DON'T EVER DO THE FOLLOWING IN A PRODUCTION DOCKER IMAGE ONLY DEV
 #exec gosu root /bin/bash
 #/bin/bash
+# DON'T EVER DO THE ABOVE IN A PRODUCTION DOCKER IMAGE ONLY DEV
+##############################################################################
