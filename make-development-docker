@@ -1,14 +1,28 @@
-# Setup
-tag=$(git rev-parse --abbrev-ref HEAD)
-source=development.docker
-name=$USER.centos.development.docker:${tag}
-flat_name=$USER.centos.development.docker.flat
+# ---------------------------------------------------------------------------
+# Setup for tools
+source=dev.tools.image
+name=dev.espa.centos.tools
 
 # Build the image
 docker build -t ${name} ${source}
 
+
+# ---------------------------------------------------------------------------
+# Setup for dev
+tag=$(git rev-parse --abbrev-ref HEAD)
+source=dev.espa.image
+name=$USER.centos.dev.espa:${tag}
+
+# Build the image
+docker build -t ${name} ${source}
+
+
+
+
+
 # Now Flatten the image
-#ID=$(docker run -d $NAME /bin/bash)
+#flat_name=$USER.centos.dev.espa.flat
+#ID=$(docker run -d ${name} /bin/bash)
 #echo "ID = "$ID
 #docker export $ID | docker import - ${flat_name}
 

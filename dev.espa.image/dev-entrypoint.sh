@@ -42,6 +42,7 @@ chown $THE_UID:$THE_GID $HOME
 chown $THE_UID:$THE_GID .bashrc .bash-aliases .bash-prompt .bash-user
 chown $THE_UID:$THE_GID .valgrindrc valgrind.supp
 chown --recursive $THE_UID:$THE_GID $HOME/bin
+chown --recursive $THE_UID:$THE_GID $HOME/.usgs
 chmod go=u,go-w .bashrc
 chmod go= .
 
@@ -50,6 +51,7 @@ chmod go= .
 # DON'T EVER DO THE FOLLOWING IN A PRODUCTION DOCKER IMAGE ONLY DEV
 chown --recursive $THE_UID:$THE_GID /usr/local/bin
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-cloud-masking
+chown --recursive $THE_UID:$THE_GID /usr/local/espa-elevation
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-land-surface-temperature
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-product-formatter
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-spectral-indices

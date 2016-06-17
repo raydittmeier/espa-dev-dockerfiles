@@ -1,4 +1,4 @@
-FROM usgs.espa.centos.modtran
+FROM dev.espa.centos.tools
 
 
 MAINTAINER USGS LSRD http://eros.usgs.gov
@@ -7,18 +7,8 @@ MAINTAINER USGS LSRD http://eros.usgs.gov
 LABEL description="This is a build containing additional software for development purposes."
 
 # ----------------------------------------------------------------------------
-# Install additional tools for the developer only
-# XFCE for multiple terminals to the container
-RUN yum install -y epel-release time \
-    && yum groupinstall -y "X Window system" \
-    && yum groupinstall -y xfce \
-    && yum clean metadata
-
-# ----------------------------------------------------------------------------
 # Install newer python modules
 RUN . /python-env/bin/activate \
-    && pip install --upgrade pip \
-    && pip install --upgrade pep8 \
     && pip install \
         --upgrade git+https://github.com/USGS-EROS/espa-python-library@dev_201608#espa
 
@@ -95,7 +85,7 @@ RUN REPO_NAME=espa-surface-reflectance \
 
 
 RUN REPO_NAME=espa-land-surface-temperature \
-    && REPO_TAG=dev_v0.1.0 \
+    && REPO_TAG=dev_v0.0.4 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -125,7 +115,7 @@ RUN REPO_NAME=espa-elevation \
 # ----------------------------------------------------------------------------
 # Add an entrypoint so that we execute the specified application as the
 # specified user (THE_USER specified below)
-RUN echo "Release Candidate 2"
+RUN echo "Release Candidate 1"
 ENV THE_USER=espa \
     DEV_DATA_DIRECTORY=/home/espa/input-data
 
@@ -135,6 +125,7 @@ COPY bashrc /home/${THE_USER}/.bashrc
 COPY bash-aliases /home/${THE_USER}/.bash-aliases
 COPY bash-prompt /home/${THE_USER}/.bash-prompt
 COPY bash-user /home/${THE_USER}/.bash-user
+COPY processing.conf /home/${THE_USER}/.usgs/espa/processing.conf
 
 COPY valgrindrc /home/${THE_USER}/.valgrindrc
 COPY valgrind.supp /home/${THE_USER}/valgrind.supp
