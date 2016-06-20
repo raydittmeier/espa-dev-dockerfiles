@@ -90,7 +90,7 @@ RUN REPO_NAME=espa-land-surface-temperature \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
     && git checkout ${REPO_TAG} \
-    && make BUILD_STATIC=yes \
+    && make BUILD_STATIC=yes ENABLE_THREADING=yes \
     && make install \
     && cd $SRC_DIR \
     && rm -rf ${REPO_NAME}
