@@ -1,4 +1,4 @@
-FROM dev.espa.centos.tools
+FROM dev.espa.centos.tools:0.1.0
 
 
 MAINTAINER USGS LSRD http://eros.usgs.gov
@@ -20,9 +20,16 @@ RUN . /python-env/bin/activate \
 # build any intermediate docker images.
 # ----------------------------------------------------------------------------
 
+
+ENV PREFIX=/usr/local \
+    ESPAINC=/usr/local/include \
+    ESPALIB=/usr/local/lib
+
+
 # ----------------------------------------------------------------------------
 # Clone the software and then build and install it
 # ----------------------------------------------------------------------------
+
 
 RUN REPO_NAME=espa-product-formatter \
     && REPO_TAG=dev_v1.8.0 \
@@ -97,12 +104,40 @@ RUN REPO_NAME=espa-land-surface-temperature \
 
 
 RUN REPO_NAME=espa-elevation \
-    && REPO_TAG=dev_v1.0.0 \
+    && REPO_TAG=dev_v2.0.1 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
     && git checkout ${REPO_TAG} \
     && make BUILD_STATIC=yes \
+    && make install \
+    && cd $SRC_DIR \
+    && rm -rf ${REPO_NAME}
+
+# ----------------------------------------------------------------------------
+# Build MODTRAN into the docker image
+# If ever a new MODTRAN is built, the DATA directory needs to be copied
+# to the auxiliaries location
+COPY external_tools/modtran-5.3.2 /usr/local/src/modtran
+RUN cd $SRC_DIR \
+    && cd modtran \
+    && ./bootstrap \
+    && ./configure \
+    && make install
+#    && make databases \
+#    && cp -r DATA /usr/local/share/MODTRAN_DATA \
+#    && ln -sf /usr/local/bin/mod53 /usr/local/bin/modtran \
+#    && cd $SRC_DIR \
+#    && rm -rf modtran
+
+
+RUN echo "Release Candidate Paper-Pancake"
+RUN REPO_NAME=espa-processing \
+    && REPO_TAG=dev_bridge_work \
+    && cd $SRC_DIR \
+    && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
+    && cd ${REPO_NAME} \
+    && git checkout ${REPO_TAG} \
     && make install \
     && cd $SRC_DIR \
     && rm -rf ${REPO_NAME}
@@ -115,7 +150,7 @@ RUN REPO_NAME=espa-elevation \
 # ----------------------------------------------------------------------------
 # Add an entrypoint so that we execute the specified application as the
 # specified user (THE_USER specified below)
-RUN echo "Release Candidate 1"
+RUN echo "Release Candidate Paper-Pancake"
 ENV THE_USER=espa \
     DEV_DATA_DIRECTORY=/home/espa/input-data
 

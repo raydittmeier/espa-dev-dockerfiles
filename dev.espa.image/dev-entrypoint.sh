@@ -15,7 +15,11 @@ useradd --system --gid $THE_GID --uid $THE_UID --shell /bin/bash --create-home $
 # Add sudo stuff for the user to the system
 #usermod -append --groups sudo $THE_USER
 #echo "$THE_USER ALL=(ALL) NOPASSWD: /usr/bin/chattr" >> /etc/sudoers
+##############################################################################
+# DON'T EVER DO THE FOLLOWING IN A PRODUCTION DOCKER IMAGE ONLY DEV
 echo "$THE_USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+# DON'T EVER DO THE ABOVE IN A PRODUCTION DOCKER IMAGE ONLY DEV
+##############################################################################
 
 ##############################################################################
 # DON'T EVER DO THE FOLLOWING IN A PRODUCTION DOCKER IMAGE ONLY DEV
@@ -53,6 +57,7 @@ chown --recursive $THE_UID:$THE_GID /usr/local/bin
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-cloud-masking
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-elevation
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-land-surface-temperature
+chown --recursive $THE_UID:$THE_GID /usr/local/espa-processing
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-product-formatter
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-spectral-indices
 chown --recursive $THE_UID:$THE_GID /usr/local/espa-surface-reflectance
@@ -71,6 +76,7 @@ chown --recursive $THE_UID:$THE_GID /usr/local/src
 ##############################################################################
 
 # Now execute as the user
+cd $HOME/work-dir
 exec gosu $THE_USER $@
 ##############################################################################
 # DON'T EVER DO THE FOLLOWING IN A PRODUCTION DOCKER IMAGE ONLY DEV

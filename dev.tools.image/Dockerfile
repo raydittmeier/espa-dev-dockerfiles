@@ -1,4 +1,4 @@
-FROM usgs.espa.centos.modtran
+FROM usgs.espa.centos.external:0.1.0
 
 
 MAINTAINER USGS LSRD http://eros.usgs.gov
