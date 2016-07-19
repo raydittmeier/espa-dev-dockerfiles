@@ -1,4 +1,4 @@
-FROM dev.espa.centos.tools:0.1.0
+FROM dev.centos.tools:0.2.0
 
 
 MAINTAINER USGS LSRD http://eros.usgs.gov
@@ -156,15 +156,15 @@ ENV THE_USER=espa \
 
 # ----------------------------------------------------------------------------
 # My user environment stuff
-COPY bashrc /home/${THE_USER}/.bashrc
-COPY bash-aliases /home/${THE_USER}/.bash-aliases
-COPY bash-prompt /home/${THE_USER}/.bash-prompt
-COPY bash-user /home/${THE_USER}/.bash-user
-COPY processing.conf /home/${THE_USER}/.usgs/espa/processing.conf
+COPY environment/bashrc /home/${THE_USER}/.bashrc
+COPY environment/bash-aliases /home/${THE_USER}/.bash-aliases
+COPY environment/bash-prompt /home/${THE_USER}/.bash-prompt
+COPY environment/bash-user /home/${THE_USER}/.bash-user
+COPY environment/processing.conf /home/${THE_USER}/.usgs/espa/processing.conf
 
-COPY valgrindrc /home/${THE_USER}/.valgrindrc
-COPY valgrind.supp /home/${THE_USER}/valgrind.supp
-COPY make /home/${THE_USER}/bin/make
-COPY dev-entrypoint.sh /entrypoint.sh
+COPY environment/valgrindrc /home/${THE_USER}/.valgrindrc
+COPY environment/valgrind.supp /home/${THE_USER}/valgrind.supp
+COPY environment/make /home/${THE_USER}/bin/make
+COPY environment/dev-entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
