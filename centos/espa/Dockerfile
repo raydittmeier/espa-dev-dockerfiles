@@ -131,7 +131,7 @@ RUN cd $SRC_DIR \
 #    && rm -rf modtran
 
 
-RUN echo "Release Candidate Paper-Pancake"
+RUN echo "Release Candidate pigs-fly"
 RUN REPO_NAME=espa-processing \
     && REPO_TAG=dev_bridge_work \
     && cd $SRC_DIR \
@@ -150,7 +150,7 @@ RUN REPO_NAME=espa-processing \
 # ----------------------------------------------------------------------------
 # Add an entrypoint so that we execute the specified application as the
 # specified user (THE_USER specified below)
-RUN echo "Release Candidate Paper-Pancake"
+RUN echo "Release Candidate pigs-fly"
 ENV THE_USER=espa \
     DEV_DATA_DIRECTORY=/home/espa/input-data
 

@@ -76,7 +76,6 @@ chown --recursive $THE_UID:$THE_GID /usr/local/src
 ##############################################################################
 
 # Now execute as the user
-cd $HOME/work-dir
 exec gosu $THE_USER $@
 ##############################################################################
 # DON'T EVER DO THE FOLLOWING IN A PRODUCTION DOCKER IMAGE ONLY DEV
