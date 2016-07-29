@@ -159,7 +159,6 @@ COPY environment/bashrc /home/${THE_USER}/.bashrc
 COPY environment/bash-aliases /home/${THE_USER}/.bash-aliases
 COPY environment/bash-prompt /home/${THE_USER}/.bash-prompt
 COPY environment/bash-user /home/${THE_USER}/.bash-user
-COPY environment/processing.conf /home/${THE_USER}/.usgs/espa/processing.conf
 
 COPY environment/valgrindrc /home/${THE_USER}/.valgrindrc
 COPY environment/valgrind.supp /home/${THE_USER}/valgrind.supp
