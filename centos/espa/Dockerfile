@@ -109,7 +109,6 @@ RUN REPO_NAME=espa-elevation \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
     && git checkout ${REPO_TAG} \
-    && make BUILD_STATIC=yes \
     && make install \
     && cd $SRC_DIR \
     && rm -rf ${REPO_NAME}
