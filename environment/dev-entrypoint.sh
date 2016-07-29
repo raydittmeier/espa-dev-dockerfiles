@@ -46,7 +46,6 @@ chown $THE_UID:$THE_GID $HOME
 chown $THE_UID:$THE_GID .bashrc .bash-aliases .bash-prompt .bash-user
 chown $THE_UID:$THE_GID .valgrindrc valgrind.supp
 chown --recursive $THE_UID:$THE_GID $HOME/bin
-chown --recursive $THE_UID:$THE_GID $HOME/.usgs
 chmod go=u,go-w .bashrc
 chmod go= .
 
