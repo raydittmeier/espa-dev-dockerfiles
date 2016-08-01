@@ -26,4 +26,5 @@ RUN . /python-env/bin/activate \
     && pip install --upgrade pip \
     && pip install --upgrade pep8 \
     && pip install --upgrade nose2 \
-    && pip install --upgrade coverage
+    && pip install --upgrade coverage \
+    && pip install --upgrade cov-core
