@@ -1,4 +1,4 @@
-FROM dev.centos.tools:0.2.0
+FROM dev.centos.tools:0.3.0
 
 
 MAINTAINER USGS LSRD http://eros.usgs.gov
@@ -8,8 +8,7 @@ LABEL description="This is a build containing additional software for developmen
 
 # ----------------------------------------------------------------------------
 # Install newer python modules
-RUN . /python-env/bin/activate \
-    && pip install \
+RUN pip install \
         --upgrade git+https://github.com/USGS-EROS/espa-python-library@v1.0.1#espa
 
 
@@ -32,7 +31,7 @@ ENV PREFIX=/usr/local \
 
 
 RUN REPO_NAME=espa-product-formatter \
-    && REPO_TAG=product_formatter_v1.8.0 \
+    && REPO_TAG=dev_v1.9.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -44,7 +43,7 @@ RUN REPO_NAME=espa-product-formatter \
 
 
 RUN REPO_NAME=espa-spectral-indices \
-    && REPO_TAG=spectral_indices_v2.5.0 \
+    && REPO_TAG=dev_v2.5.1 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -56,7 +55,7 @@ RUN REPO_NAME=espa-spectral-indices \
 
 
 RUN REPO_NAME=espa-cloud-masking \
-    && REPO_TAG=cfmask-version_2.0.1 \
+    && REPO_TAG=dev_v2.0.2 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -68,7 +67,7 @@ RUN REPO_NAME=espa-cloud-masking \
 
 
 RUN REPO_NAME=espa-surface-water-extent \
-    && REPO_TAG=dswe-version_1.1.1 \
+    && REPO_TAG=dev_oct2016 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -80,7 +79,7 @@ RUN REPO_NAME=espa-surface-water-extent \
 
 
 RUN REPO_NAME=espa-surface-reflectance \
-    && REPO_TAG=surface_reflectance_aug2016 \
+    && REPO_TAG=dev_oct \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -92,7 +91,7 @@ RUN REPO_NAME=espa-surface-reflectance \
 
 
 RUN REPO_NAME=espa-land-surface-temperature \
-    && REPO_TAG=dev_v0.1.0 \
+    && REPO_TAG=dev_v0.0.5 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -104,7 +103,7 @@ RUN REPO_NAME=espa-land-surface-temperature \
 
 
 RUN REPO_NAME=espa-elevation \
-    && REPO_TAG=v2.0.1 \
+    && REPO_TAG=dev_v2.1.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -122,15 +121,15 @@ RUN cd $SRC_DIR \
     && cd modtran \
     && ./bootstrap \
     && ./configure \
-    && make install
+    && make install \
+    && ln -sf /usr/local/bin/mod53 /usr/local/bin/modtran
 #    && make databases \
 #    && cp -r DATA /usr/local/share/MODTRAN_DATA \
-#    && ln -sf /usr/local/bin/mod53 /usr/local/bin/modtran \
 #    && cd $SRC_DIR \
 #    && rm -rf modtran
 
 
-RUN echo "Release Candidate tungsten"
+RUN echo "Release Candidate cobalt-blue"
 RUN REPO_NAME=espa-processing \
     && REPO_TAG=dev_v2.12.0 \
     && cd $SRC_DIR \
@@ -149,7 +148,7 @@ RUN REPO_NAME=espa-processing \
 # ----------------------------------------------------------------------------
 # Add an entrypoint so that we execute the specified application as the
 # specified user (THE_USER specified below)
-RUN echo "Release Candidate tungsten"
+RUN echo "Release Candidate cobalt-blue"
 ENV THE_USER=espa \
     DEV_DATA_DIRECTORY=/home/espa/input-data
 

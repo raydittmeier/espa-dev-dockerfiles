@@ -1,4 +1,4 @@
-FROM espa.centos.external:0.2.0
+FROM espa.centos.external:0.3.0
 
 
 MAINTAINER USGS LSRD http://eros.usgs.gov
@@ -22,8 +22,7 @@ RUN yum install -y \
 
 # ----------------------------------------------------------------------------
 # Install newer python modules
-RUN . /python-env/bin/activate \
-    && pip install --upgrade pip \
+RUN pip install --upgrade pip \
     && pip install --upgrade pep8 \
     && pip install --upgrade nose2 \
     && pip install --upgrade coverage \

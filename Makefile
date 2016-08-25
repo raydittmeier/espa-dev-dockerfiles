@@ -1,6 +1,8 @@
 
 TAG_PREFIX = dev
-TAG_VERSION = 0.2.0
+TAG_VERSION = 0.3.0
+
+.PHONY: all clean clean.containers clean.images build.tools build.espa centos.tools centos.espa tools espa
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # General targets
@@ -15,8 +17,6 @@ clean.containers:
 
 clean.images:
 	@-./scripts/remove-dangling-images.sh
-
-.PHONY: all clean clean.containers clean.images build.tools build.espa centos.tools centos.espa tools espa
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Common
@@ -41,7 +41,7 @@ build.espa:
 centos.tools:
 	@SYSTEM=centos make build.tools
 
-centos.espa: centos.tools
+centos.espa:
 	@SYSTEM=centos make build.espa
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

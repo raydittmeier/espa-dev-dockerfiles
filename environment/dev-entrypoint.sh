@@ -38,7 +38,7 @@ export HOME=/home/$THE_USER
 # Don't create *.pyc files
 export PYTHONDONTWRITEBYTECODE=1
 # Activate the python virtual environment
-source /python-env/bin/activate
+#source /python-env/bin/activate
 
 # Fixup the home directory since it was created before the user was
 cd $HOME
