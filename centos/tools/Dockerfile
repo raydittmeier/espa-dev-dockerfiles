@@ -1,4 +1,4 @@
-FROM espa.centos.external:0.3.0
+FROM espa.centos.external:b2.11.4
 
 
 MAINTAINER USGS LSRD http://eros.usgs.gov
