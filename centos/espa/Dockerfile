@@ -9,7 +9,7 @@ LABEL description="This is a build containing additional software for developmen
 # ----------------------------------------------------------------------------
 # Install newer python modules
 RUN pip install \
-        --upgrade git+https://github.com/USGS-EROS/espa-python-library@v1.0.1#espa
+        git+https://github.com/USGS-EROS/espa-python-library@v1.0.1#espa
 
 
 # ----------------------------------------------------------------------------
