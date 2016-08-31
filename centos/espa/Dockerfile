@@ -1,4 +1,4 @@
-FROM dev.centos.tools:0.3.0
+FROM dev.centos.tools:2.12.0
 
 
 MAINTAINER USGS LSRD http://eros.usgs.gov
@@ -9,7 +9,7 @@ LABEL description="This is a build containing additional software for developmen
 # ----------------------------------------------------------------------------
 # Install newer python modules
 RUN pip install \
-        --upgrade git+https://github.com/USGS-EROS/espa-python-library@v1.0.1#espa
+        git+https://github.com/USGS-EROS/espa-python-library@v1.0.1#espa
 
 
 # ----------------------------------------------------------------------------
@@ -151,6 +151,7 @@ RUN REPO_NAME=espa-processing \
 RUN echo "Release Candidate cobalt-blue"
 ENV THE_USER=espa \
     DEV_DATA_DIRECTORY=/home/espa/input-data
+
 
 # ----------------------------------------------------------------------------
 # My user environment stuff
