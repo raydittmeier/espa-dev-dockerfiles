@@ -1,7 +1,7 @@
 FROM dev.centos.tools:2.12.0
 
 
-MAINTAINER USGS LSRD http://eros.usgs.gov
+MAINTAINER USGS EROS LSRD http://eros.usgs.gov
 
 
 LABEL description="This is a build containing additional software for development purposes."
