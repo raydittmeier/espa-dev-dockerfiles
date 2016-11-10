@@ -1,4 +1,4 @@
-FROM dev.centos.tools:2.12.0
+FROM dev.centos.tools:2.12.1
 
 
 MAINTAINER USGS EROS LSRD http://eros.usgs.gov
@@ -31,7 +31,7 @@ ENV PREFIX=/usr/local \
 
 
 RUN REPO_NAME=espa-product-formatter \
-    && REPO_TAG=dev_v1.9.0 \
+    && REPO_TAG=product_formatter_v1.9.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -55,7 +55,7 @@ RUN REPO_NAME=espa-spectral-indices \
 
 
 RUN REPO_NAME=espa-cloud-masking \
-    && REPO_TAG=2016_Aug \
+    && REPO_TAG=cfmask-version_2.0.1-1 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -79,7 +79,7 @@ RUN REPO_NAME=espa-surface-water-extent \
 
 
 RUN REPO_NAME=espa-surface-reflectance \
-    && REPO_TAG=dev_oct \
+    && REPO_TAG=surface_reflectance_oct2016 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -91,7 +91,7 @@ RUN REPO_NAME=espa-surface-reflectance \
 
 
 RUN REPO_NAME=espa-land-surface-temperature \
-    && REPO_TAG=2016_Aug \
+    && REPO_TAG=2016_Aug-1 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -103,7 +103,7 @@ RUN REPO_NAME=espa-land-surface-temperature \
 
 
 RUN REPO_NAME=espa-elevation \
-    && REPO_TAG=dev_v2.1.0 \
+    && REPO_TAG=v2.1.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -131,7 +131,7 @@ RUN cd $SRC_DIR \
 
 RUN echo "Release Candidate cobalt-blue"
 RUN REPO_NAME=espa-processing \
-    && REPO_TAG=dev_v2.12.0 \
+    && REPO_TAG=espa-2.12.0-release \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
