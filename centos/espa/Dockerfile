@@ -1,4 +1,4 @@
-FROM dev.centos.tools:2.12.1
+FROM dev/tools:2.13.0
 
 
 MAINTAINER USGS EROS LSRD http://eros.usgs.gov
@@ -31,7 +31,19 @@ ENV PREFIX=/usr/local \
 
 
 RUN REPO_NAME=espa-product-formatter \
-    && REPO_TAG=product_formatter_v1.9.0 \
+    && REPO_TAG=dev_v1.10.0 \
+    && cd $SRC_DIR \
+    && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
+    && cd ${REPO_NAME} \
+    && git checkout ${REPO_TAG} \
+    && make BUILD_STATIC=yes \
+    && make install \
+    && cd $SRC_DIR \
+    && rm -rf ${REPO_NAME}
+
+
+RUN REPO_NAME=espa-l2qa-tools \
+    && REPO_TAG=dev_v1.1.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -55,7 +67,7 @@ RUN REPO_NAME=espa-spectral-indices \
 
 
 RUN REPO_NAME=espa-cloud-masking \
-    && REPO_TAG=cfmask-version_2.0.1-1 \
+    && REPO_TAG=cfmask-version_2.0.1.1 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -67,7 +79,7 @@ RUN REPO_NAME=espa-cloud-masking \
 
 
 RUN REPO_NAME=espa-surface-water-extent \
-    && REPO_TAG=2016_Aug \
+    && REPO_TAG=dev_espa_v2.13.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -79,7 +91,7 @@ RUN REPO_NAME=espa-surface-water-extent \
 
 
 RUN REPO_NAME=espa-surface-reflectance \
-    && REPO_TAG=surface_reflectance_oct2016 \
+    && REPO_TAG=dev_jan2017 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -103,7 +115,7 @@ RUN REPO_NAME=espa-land-surface-temperature \
 
 
 RUN REPO_NAME=espa-elevation \
-    && REPO_TAG=v2.1.0 \
+    && REPO_TAG=dev_v2.2.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -129,9 +141,9 @@ RUN cd $SRC_DIR \
 #    && rm -rf modtran
 
 
-RUN echo "Release Candidate cobalt-blue"
+RUN echo "Release Candidate coke-classic"
 RUN REPO_NAME=espa-processing \
-    && REPO_TAG=espa-2.12.0-release \
+    && REPO_TAG=dev_espa_2.13.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -148,7 +160,7 @@ RUN REPO_NAME=espa-processing \
 # ----------------------------------------------------------------------------
 # Add an entrypoint so that we execute the specified application as the
 # specified user (THE_USER specified below)
-RUN echo "Release Candidate bubble-gum"
+RUN echo "Release Candidate coke-classic"
 ENV THE_USER=espa \
     DEV_DATA_DIRECTORY=/home/espa/input-data
 
