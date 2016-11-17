@@ -1,8 +1,8 @@
 
 TAG_PREFIX = dev
-TAG_VERSION = 2.12.1
+TAG_VERSION = 2.13.0
 
-.PHONY: all clean clean.containers clean.images build.tools build.espa centos.tools centos.espa tools espa
+.PHONY: all clean clean.containers clean.images build.tools build.espa build.bridge centos.tools centos.espa centos.bridge tools espa bridge
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # General targets
@@ -23,16 +23,22 @@ clean.images:
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 build.tools:
-	@docker build -t $(TAG_PREFIX).$(SYSTEM).tools \
+	@docker build -t $(TAG_PREFIX)/tools \
          -f $(SYSTEM)/tools/Dockerfile .
-	@docker tag $(TAG_PREFIX).$(SYSTEM).tools \
-        $(TAG_PREFIX).$(SYSTEM).tools:$(TAG_VERSION)
+	@docker tag $(TAG_PREFIX)/tools \
+        $(TAG_PREFIX)/tools:$(TAG_VERSION)
 
 build.espa:
-	@docker build -t $(TAG_PREFIX).$(SYSTEM).espa \
+	@docker build -t $(TAG_PREFIX)/espa \
          -f $(SYSTEM)/espa/Dockerfile .
-	@docker tag $(TAG_PREFIX).$(SYSTEM).espa \
-        $(TAG_PREFIX).$(SYSTEM).espa:$(TAG_VERSION)
+	@docker tag $(TAG_PREFIX)/espa \
+        $(TAG_PREFIX)/espa:$(TAG_VERSION)
+
+build.bridge:
+	@docker build -t $(TAG_PREFIX)/bridge \
+         -f $(SYSTEM)/espa/Dockerfile .
+	@docker tag $(TAG_PREFIX)/bridge \
+        $(TAG_PREFIX)/bridge:$(TAG_VERSION)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # CentOS
@@ -44,9 +50,13 @@ centos.tools:
 centos.espa:
 	@SYSTEM=centos make build.espa
 
+centos.bridge:
+	@SYSTEM=centos make build.bridge
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Shortcuts
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 tools: centos.tools
 espa: centos.espa
+bridge: centos.bridge
