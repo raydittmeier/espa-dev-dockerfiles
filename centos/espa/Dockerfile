@@ -1,4 +1,4 @@
-FROM dev/tools:2.13.0
+FROM dev/tools:2.14.0
 
 
 MAINTAINER USGS EROS LSRD http://eros.usgs.gov
@@ -143,7 +143,7 @@ RUN cd $SRC_DIR \
 
 RUN echo "Release Candidate coke-classic"
 RUN REPO_NAME=espa-processing \
-    && REPO_TAG=dev_espa_2.13.0 \
+    && REPO_TAG=dev_espa_2.14.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
