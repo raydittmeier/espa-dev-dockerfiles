@@ -1,6 +1,6 @@
 
 TAG_PREFIX = dev
-TAG_VERSION = 0.3.0
+TAG_VERSION = 2.12.0
 
 .PHONY: all clean clean.containers clean.images build.tools build.espa centos.tools centos.espa tools espa
 

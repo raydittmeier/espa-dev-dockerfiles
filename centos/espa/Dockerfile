@@ -1,7 +1,7 @@
-FROM dev.centos.tools:0.3.0
+FROM dev.centos.tools:2.12.0
 
 
-MAINTAINER USGS LSRD http://eros.usgs.gov
+MAINTAINER USGS EROS LSRD http://eros.usgs.gov
 
 
 LABEL description="This is a build containing additional software for development purposes."
@@ -9,7 +9,7 @@ LABEL description="This is a build containing additional software for developmen
 # ----------------------------------------------------------------------------
 # Install newer python modules
 RUN pip install \
-        --upgrade git+https://github.com/USGS-EROS/espa-python-library@v1.0.1#espa
+        git+https://github.com/USGS-EROS/espa-python-library@v1.0.1#espa
 
 
 # ----------------------------------------------------------------------------
@@ -43,7 +43,7 @@ RUN REPO_NAME=espa-product-formatter \
 
 
 RUN REPO_NAME=espa-spectral-indices \
-    && REPO_TAG=dev_v2.5.1 \
+    && REPO_TAG=spectral_indices_v2.5.0 \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -55,7 +55,7 @@ RUN REPO_NAME=espa-spectral-indices \
 
 
 RUN REPO_NAME=espa-cloud-masking \
-    && REPO_TAG=dev_v2.0.2 \
+    && REPO_TAG=2016_Aug \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -67,7 +67,7 @@ RUN REPO_NAME=espa-cloud-masking \
 
 
 RUN REPO_NAME=espa-surface-water-extent \
-    && REPO_TAG=dev_oct2016 \
+    && REPO_TAG=2016_Aug \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -91,7 +91,7 @@ RUN REPO_NAME=espa-surface-reflectance \
 
 
 RUN REPO_NAME=espa-land-surface-temperature \
-    && REPO_TAG=dev_v0.0.5 \
+    && REPO_TAG=2016_Aug \
     && cd $SRC_DIR \
     && git clone https://github.com/USGS-EROS/${REPO_NAME}.git ${REPO_NAME} \
     && cd ${REPO_NAME} \
@@ -148,9 +148,10 @@ RUN REPO_NAME=espa-processing \
 # ----------------------------------------------------------------------------
 # Add an entrypoint so that we execute the specified application as the
 # specified user (THE_USER specified below)
-RUN echo "Release Candidate cobalt-blue"
+RUN echo "Release Candidate bubble-gum"
 ENV THE_USER=espa \
     DEV_DATA_DIRECTORY=/home/espa/input-data
+
 
 # ----------------------------------------------------------------------------
 # My user environment stuff

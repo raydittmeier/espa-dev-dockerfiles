@@ -3,9 +3,9 @@ set -e
 
 # THE_USER is defined in the Dockerfile
 
-THE_GID=$1
-shift # past the argument
 THE_UID=$1
+shift # past the argument
+THE_GID=$1
 shift # past the argument
 
 # Add the user and group to the system
@@ -31,7 +31,7 @@ echo "$THE_USER:bunny-rabbit" | chpasswd
 # Add the espa runtime installation directory to the path
 export PATH=$PREFIX/bin:/home/$THE_USER/bin:$PATH
 
-# Corectly set these environment variables for the user
+# Correctly set these environment variables for the user
 export USER=$THE_USER
 export HOME=/home/$THE_USER
 
@@ -53,14 +53,7 @@ chmod go= .
 ##############################################################################
 # DON'T EVER DO THE FOLLOWING IN A PRODUCTION DOCKER IMAGE ONLY DEV
 chown --recursive $THE_UID:$THE_GID /usr/local/bin
-chown --recursive $THE_UID:$THE_GID /usr/local/espa-cloud-masking
-chown --recursive $THE_UID:$THE_GID /usr/local/espa-elevation
-chown --recursive $THE_UID:$THE_GID /usr/local/espa-land-surface-temperature
-chown --recursive $THE_UID:$THE_GID /usr/local/espa-processing
-chown --recursive $THE_UID:$THE_GID /usr/local/espa-product-formatter
-chown --recursive $THE_UID:$THE_GID /usr/local/espa-spectral-indices
-chown --recursive $THE_UID:$THE_GID /usr/local/espa-surface-reflectance
-chown --recursive $THE_UID:$THE_GID /usr/local/espa-surface-water-extent
+chown --recursive $THE_UID:$THE_GID /usr/local/espa-*
 chown --recursive $THE_UID:$THE_GID /usr/local/etc
 chown --recursive $THE_UID:$THE_GID /usr/local/examples
 chown --recursive $THE_UID:$THE_GID /usr/local/include
