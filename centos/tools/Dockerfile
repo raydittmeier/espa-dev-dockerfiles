@@ -1,4 +1,4 @@
-FROM espa.centos.external:2.12.0
+FROM espa/external:2.14.0
 
 
 MAINTAINER USGS EROS LSRD http://eros.usgs.gov
@@ -34,4 +34,5 @@ RUN pip install --upgrade pip \
     && pip install --upgrade pep8 \
     && pip install --upgrade nose2 \
     && pip install --upgrade coverage \
-    && pip install --upgrade cov-core
+    && pip install --upgrade cov-core \
+    && pip install --upgrade radon
